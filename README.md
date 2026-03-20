@@ -9,6 +9,9 @@
 
 DelegateFlow is an intent-based delegation control center built on top of the **MetaMask Delegation Framework (ERC-7715)**. It acts as the critical orchestration layer between user intent, autonomous AI agents (like Ollama, OpenClaw, GLM), and decentralized programmable budgets. 
 
+### 🌐 [Live Production Demo](https://delegate-flow-green.vercel.app/)
+![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)
+
 ---
 
 ## 🏆 MetaMask Hackathon Submission: "Best Use of Delegations"
