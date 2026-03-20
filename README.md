@@ -9,36 +9,39 @@
 
 DelegateFlow is an intent-based delegation control center built on top of the **MetaMask Delegation Framework (ERC-7715)**. It acts as the critical orchestration layer between user intent, autonomous AI agents (like Ollama, OpenClaw, GLM), and decentralized programmable budgets. 
 
+---
+
 ## 🏆 MetaMask Hackathon Submission: "Best Use of Delegations"
 
-This project was built explicitly to target the "Dream-Tier" rubric of the MetaMask **Best Use of Delegations** track:
-1. **Intent-Based Delegations as a Core Pattern**: Users do not sign raw execution transactions. Instead, they queue "Intents" which DelegateFlow securely resolves into permissioned ERC-7715 sub-delegation paths natively within the protocol.
-2. **AI Agent Tooling & Coordination**: AI Agents naturally pose massive risk if given raw private keys. DelegateFlow allows users to spin up local (Ollama) or external (GLM/Claude) executor nodes, granting them strict `CaveatEnforcer` budgets (e.g., maximum 10 ETH transfers) that automatically revoke upon violation.
-3. **ZK-Ready Authorization**: Architected to support `ZKVerifier` integrations, ensuring privacy-preserving caveats scale flawlessly.
+DelegateFlow was engineered specifically to satisfy the **Dream-Tier (1st Place)** rubric of the MetaMask Track. Here is exactly how we hit every core requirement:
+
+### 1️⃣ Intent-Based Delegations as a Core Pattern
+* **The Requirement:** *"The strongest submissions use intent-based delegations as a core pattern..."*
+* **Our Implementation:** Traditional Web3 UX is entirely broken for automation. DelegateFlow introduces a dedicated **Intents Resolver**. Users simply input English-readable actions (e.g., *"Transfer 25 ETH for contractor payroll"*), and the system dynamically resolves this intent by generating a trustless delegation path requiring no manual follow-up signatures.
+
+### 2️⃣ Agent Tooling & Coordination Systems
+* **The Requirement:** *"Build apps, agent tooling, coordination systems, or anything that meaningfully leverages delegations..."*
+* **Our Implementation:** AI Agents naturally pose massive risk if given raw private keys. DelegateFlow’s **AI Agents Mesh** allows users to deploy local (Ollama) or external (GLM/OpenClaw/Claude) executor nodes directly into an on-chain environment. Instead of giving them keys, we grant them strict `CaveatEnforcer` budgets. If an agent goes rogue (e.g. exceeds 80% budget), the system flags it for "Global Safe Mode," proactively protecting the treasury.
+
+### 3️⃣ Novel Extensions & Sub-Delegation Chains
+* **The Requirement:** *"...extend ERC-7715 with sub-delegations or novel permission models..."*
+* **Our Implementation:** The **Active Trees** dashboard is built entirely for managing deeply hierarchical sub-delegation structures. Users can filter by Active or Pending allocations, approve multisig requirements, or permanently revoke a tree (and all of its downstream execution agents) instantly.
+
+### 4️⃣ ZK Proofs Combined with Delegation Authorization
+* **The Requirement:** *"...or combine ZK proofs with delegation-based authorization."*
+* **Our Implementation:** Architected alongside a native `ZKVerifier.sol` and `CaveatEnforcers.sol` smart contract layer. Our UI Analytics page explicitly tracks and graphs *ZKMembershipEnforcer* integrity scores via active block telemetry, ensuring privacy-preserving caveats scale flawlessly.
 
 ---
 
-## ⚡ Core Architecture
+## ⚡ Technical Architecture
 
-### 1. The Intent Resolver
-The traditional Web3 UX is entirely broken for automation. DelegateFlow introduces a dedicated **Intents** queue. Users simply input english-readable actions (*"Transfer 25 ETH for contractor payroll"*), and the system dynamically resolves this intent by generating a trustless delegation path requiring no manual follow-up signatures.
-
-### 2. AI Agents Mesh
-Deploy nodes running open-source LLMs directly into your on-chain environment.
-- **Top-Tier Integration**: Full selector support for Ollama, OpenClaw, GLM, and Claude.
-- **Agent Roles**: Assign Executor, Coordinator, or Risk Verifier logic to each node.
-- **Execution Telemetry**: Watch real-time budget usage. If an agent goes rogue and exhausts 80% of its authorized ERC-7715 limit, the system alerts you and flags it for "Safe Mode," proactively protecting the treasury.
-
-### 3. Active Delegation Trees
-Visually manage deeply hierarchical sub-delegation trees. 
-Filter by Active or Pending allocations, approve multisig requirements, or permanently revoke a tree (and all of its downstream execution agents) with a single click.
-
-### 4. Advanced Network Telemetry
-Graph states sync with active block telemetry to visualize exact Caveat Enforcer distributions (`NativeTokenTransferEnforcer`, `TimeBoundEnforcer`, etc.) and provide global Integrity Scores for your organization.
-
----
+### The Automation Control Center
+* **No Shared Private Keys.** DelegateFlow proves you can have high-speed automated execution without sacrificing absolute cryptographic security.
+* **Global Circuit Breakers.** If anomalous behavior is detected across the mesh network, human operators can trigger the "Safe Mode," instantly halting all ERC-7715 agent executions via smart contract constraints.
+* **Graph Telemetry.** Real-time visual tracking of caveat distribution across your DAO or organizational treasury.
 
 ## 🛠️ Built With
+
 - **Frontend**: Next.js 16 (App Router / Turbopack), Tailwind CSS v4, Framer Motion
 - **Web3 Stack**: Wagmi, Viem, MetaMask Delegation Toolkit `@tanstack/react-query`
 - **Smart Contracts**: Solidity 
@@ -65,10 +68,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the orchestration suite.
-
----
-
-## 💡 Why This Matters
-DelegateFlow is not just an interface; it is a fundamental unblocking of Web3 Automation. By mapping the incredible security of the MetaMask Delegation Framework to the explosive growth of Autonomous AI Agents, DelegateFlow proves that you *can* have both high-speed automated execution and absolute cryptographic security. 
-
-*No shared private keys. No blind signing.* Just pure, intent-driven orchestration.
