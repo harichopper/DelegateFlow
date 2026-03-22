@@ -1,0 +1,16 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "deployedAt": "2026-03-22T06:18:01.152Z",
+  "deployer": "0xb4Bbf9A9ca11B75A13418d307ecede3Ac281656B",
+  "contracts": {
+    "ZKMembershipVerifier": "0x80eb5067F939C80899Db7B9cBdc1d0AE74576D85",
+    "NativeTokenTransferAmountEnforcer": "0x2a7AB4Bb55bF459eB3F25D2f84e29d7CF6095047",
+    "TimeBoundEnforcer": "0xFCb88fB13E8E59AdFF2Eb10c2Eb1D344eE7b31B5",
+    "AgentBudgetEnforcer": "0xee960dE3DfAc7c4Ef31AF70A12580BA27963CBE7",
+    "DelegationManager": "0x02495d95EC5fd5fd00D642B2e940543192e4DBb6",
+    "ZKGatedDelegationEnforcer": "0x6151797AF83a42e68a596493F58407E1479CD5C8",
+    "demoDelegationTxHash": "0xf82ca708258641176de62fa899579072b2e8d22dc5ead5fbc3c51f662754f336"
+  },
+  "etherscanBase": "https://sepolia.etherscan.io"
+}

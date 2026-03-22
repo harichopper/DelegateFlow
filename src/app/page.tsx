@@ -69,7 +69,7 @@ export default function App() {
     { label: "Sub-Delegations", value: 0, color: "from-purple-500 to-pink-500", key: "sub" },
     { label: "Redeems Processed", value: 0, color: "from-orange-400 to-red-500", key: "redeems" }
   ]);
-  const [settings, setSettings] = useState({ rpc: "https://sepolia.infura.io/v3/YOUR_KEY", core: "0xDelegationProtocol...", depth: 3, alert: 80 });
+  const [settings, setSettings] = useState({ rpc: "https://ethereum-sepolia-rpc.publicnode.com", core: "0x02495d95EC5fd5fd00D642B2e940543192e4DBb6", depth: 3, alert: 80 });
 
   const [activeFilter, setActiveFilter] = useState("All");
 

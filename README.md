@@ -37,6 +37,24 @@ DelegateFlow was engineered specifically to satisfy the **Dream-Tier (1st Place)
 
 ---
 
+## 🔗 Live On-Chain Deployments (Sepolia Testnet)
+
+> All contracts deployed and verified on **Ethereum Sepolia** (Chain ID: 11155111)
+> Deployer: `0xb4Bbf9A9ca11B75A13418d307ecede3Ac281656B`
+
+| Contract | Address |
+|---------|---------|
+| **DelegationManager** (ERC-7715 Core) | [`0x02495d95EC5fd5fd00D642B2e940543192e4DBb6`](https://sepolia.etherscan.io/address/0x02495d95EC5fd5fd00D642B2e940543192e4DBb6) |
+| **ZKMembershipVerifier** | [`0x80eb5067F939C80899Db7B9cBdc1d0AE74576D85`](https://sepolia.etherscan.io/address/0x80eb5067F939C80899Db7B9cBdc1d0AE74576D85) |
+| **ZKGatedDelegationEnforcer** | [`0x6151797AF83a42e68a596493F58407E1479CD5C8`](https://sepolia.etherscan.io/address/0x6151797AF83a42e68a596493F58407E1479CD5C8) |
+| **AgentBudgetEnforcer** | [`0xee960dE3DfAc7c4Ef31AF70A12580BA27963CBE7`](https://sepolia.etherscan.io/address/0xee960dE3DfAc7c4Ef31AF70A12580BA27963CBE7) |
+| **TimeBoundEnforcer** | [`0xFCb88fB13E8E59AdFF2Eb10c2Eb1D344eE7b31B5`](https://sepolia.etherscan.io/address/0xFCb88fB13E8E59AdFF2Eb10c2Eb1D344eE7b31B5) |
+| **NativeTokenTransferAmountEnforcer** | [`0x2a7AB4Bb55bF459eB3F25D2f84e29d7CF6095047`](https://sepolia.etherscan.io/address/0x2a7AB4Bb55bF459eB3F25D2f84e29d7CF6095047) |
+
+**✅ Demo Delegation Created On-Chain:**
+[`0xf82ca708258641176de62fa899579072b2e8d22dc5ead5fbc3c51f662754f336`](https://sepolia.etherscan.io/tx/0xf82ca708258641176de62fa899579072b2e8d22dc5ead5fbc3c51f662754f336)
+
+
 ## ⚡ Technical Architecture
 
 ### The Automation Control Center
