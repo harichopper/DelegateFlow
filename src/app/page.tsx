@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { 
+import {
   Shield, Plus, Settings2, Filter, Clock, Coins, Users, Edit2, Trash2, X, Sparkles, Camera, UserCheck, ChevronRight, Database, HelpCircle, Activity, Zap, Loader2, Bot, TrendingUp, BarChart, CheckCircle, AlertCircle, Terminal, ShieldCheck, Server
 } from "lucide-react";
 
@@ -16,7 +16,7 @@ const DelegateFlowLogo = () => (
     <path d="M50 5L95 28L50 52L5 28L50 5Z" fill="url(#logoPrimary)" fillOpacity="0.95" />
     <path d="M95 28V72L50 95V52L95 28Z" fill="url(#logoSecondary)" fillOpacity="0.8" />
     <path d="M5 28V72L50 95V52L5 28Z" fill="url(#logoSecondary)" fillOpacity="0.3" />
-    <path d="M50 20L75 33L50 46L25 33L50 20Z" fill="#0f172a" fillOpacity="0.7"/>
+    <path d="M50 20L75 33L50 46L25 33L50 20Z" fill="#0f172a" fillOpacity="0.7" />
     <circle cx="50" cy="33" r="5" fill="#60a5fa" className="animate-pulse" />
     <circle cx="50" cy="33" r="3" fill="#ffffff" />
     <circle cx="50" cy="5" r="4" fill="#ffffff" />
@@ -29,7 +29,7 @@ const DelegateFlowLogo = () => (
 );
 
 const getIconByName = (name: string) => {
-  switch(name) {
+  switch (name) {
     case "Clock": return <Clock className="w-3.5 h-3.5" />;
     case "Coins": return <Coins className="w-3.5 h-3.5" />;
     case "Users": return <Users className="w-3.5 h-3.5" />;
@@ -58,7 +58,7 @@ const CustomSelect = ({ label, options, ...props }: any) => (
 export default function App() {
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState("Delegations");
-  
+
   // App State - Resetting Demos & adding v3 keys
   const [delegations, setDelegations] = useState<any[]>([]);
   const [intents, setIntents] = useState<any[]>([]);
@@ -102,7 +102,7 @@ export default function App() {
       const savedAgents = localStorage.getItem('df_agents_v3');
       const savedSettings = localStorage.getItem('df_settings_v3');
       const savedSafeMode = localStorage.getItem('df_safemode_v3');
-      
+
       if (savedDel) setDelegations(JSON.parse(savedDel));
       if (savedStats) setStats(JSON.parse(savedStats));
       if (savedIntents) setIntents(JSON.parse(savedIntents));
@@ -141,7 +141,7 @@ export default function App() {
 
   const submitDelegation = () => {
     if (!delForm.title || !delForm.target) return alert("Fill all required fields!");
-    
+
     if (editDelId) {
       setDelegations(prev => prev.map(del => {
         if (del.id === editDelId) {
@@ -215,7 +215,7 @@ export default function App() {
   // --- INTENTS LOGIC ---
   const submitIntent = () => {
     if (!intentForm.target || !intentForm.reasoning) return alert("Missing required fields!");
-    
+
     const newIntent = {
       id: `intent-${Date.now()}`,
       action: intentForm.action,
@@ -256,7 +256,7 @@ export default function App() {
   // --- AGENTS LOGIC ---
   const submitAgent = () => {
     if (!agentForm.name || !agentForm.endpoint) return alert("Fill out Agent ID and RPC endpoint");
-    
+
     const newAgent = {
       id: `ag-${Date.now()}`,
       name: agentForm.name,
@@ -313,7 +313,7 @@ export default function App() {
   const saveSettings = () => {
     setIsSavingSettings(true);
     setTimeout(() => {
-      setSettingsForm({ ...settingsForm }); 
+      setSettingsForm({ ...settingsForm });
       setSettings(settingsForm); // Just for confirmation flow
       setIsSavingSettings(false);
       alert("Settings permanently saved via Wagmi Config Updates!");
@@ -343,9 +343,9 @@ export default function App() {
     <>
       <div className="mesh-bg" />
       <div className="noise-overlay" />
-      
+
       <div className="min-h-screen flex flex-col items-center relative z-10">
-        
+
         {/* Modern Header */}
         <header className="w-full max-w-[1400px] px-6 h-24 flex items-center justify-between border-b border-white/5 bg-white/[0.01] backdrop-blur-md sticky top-0 z-50">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-12">
@@ -358,11 +358,11 @@ export default function App() {
                 Delegate<span className="text-blue-500 font-light">Flow</span>
               </div>
             </div>
-            
+
             <nav className="hidden lg:flex items-center gap-2 bg-white/[0.03] p-1.5 rounded-2xl border border-white/[0.05]">
               {["Delegations", "Intents", "Agents", "Analytics", "Settings"].map((tab) => (
-                <button 
-                  key={tab} 
+                <button
+                  key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`relative px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${activeTab === tab ? "text-white" : "text-zinc-400 hover:text-zinc-200 hover:bg-white/5"}`}
                 >
@@ -379,7 +379,7 @@ export default function App() {
             <button className="hidden sm:flex w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.05] items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all">
               <Activity className="w-4 h-4" />
             </button>
-            <button 
+            <button
               onClick={() => {
                 if (isConnected) disconnect();
                 else if (connectors.length > 0) connect({ connector: connectors[0] });
@@ -400,7 +400,7 @@ export default function App() {
 
         {/* Main Content */}
         <main className="w-full max-w-[1400px] px-6 py-12 flex-1 flex flex-col">
-          
+
           <AnimatePresence mode="wait">
             {activeTab === "Delegations" && (
               <motion.div key="delegations" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }} className="flex-1 flex flex-col">
@@ -412,7 +412,7 @@ export default function App() {
                     <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/60">Manage Delegations</h1>
                     <p className="text-zinc-400 text-lg leading-relaxed max-w-xl font-light">Orchestrate secure voting power and hierarchical permission structures across decentralized protocols with ERC-7715.</p>
                   </div>
-                  <motion.button 
+                  <motion.button
                     onClick={() => setShowDelModal(true)}
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     className="relative px-6 py-3.5 rounded-xl bg-white text-black font-semibold overflow-hidden group flex items-center gap-2"
@@ -499,7 +499,7 @@ export default function App() {
                 </div>
               </motion.div>
             )}
-            
+
             {activeTab === "Intents" && (
               <motion.div key="intents" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex-1 flex flex-col space-y-8">
                 <div className="flex items-end justify-between">
@@ -563,9 +563,8 @@ export default function App() {
                       <p className={`${safeMode ? 'text-red-400' : 'text-zinc-400'} text-sm mb-4`}>
                         {safeMode ? "All nodes paused via Circuit Breaker." : `${agents.length} active autonomous nodes operating on-chain.`}
                       </p>
-                      <button onClick={handleToggleSafeMode} className={`w-full text-center text-sm py-2 rounded-lg border transition-colors ${
-                        safeMode ? "border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/10" : "border-red-500/30 text-red-500 hover:bg-red-500/10"
-                      }`}>
+                      <button onClick={handleToggleSafeMode} className={`w-full text-center text-sm py-2 rounded-lg border transition-colors ${safeMode ? "border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/10" : "border-red-500/30 text-red-500 hover:bg-red-500/10"
+                        }`}>
                         {safeMode ? "Restore Operations" : "Trigger Safe Mode"}
                       </button>
                     </div>
@@ -577,7 +576,7 @@ export default function App() {
                         <div className="flex items-center justify-between mb-6">
                           <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 uppercase font-bold text-xs text-center text-zinc-300">
-                             {ag.model.slice(0,3)}
+                              {ag.model.slice(0, 3)}
                             </div>
                             <div>
                               <div className="flex items-center gap-2">
@@ -587,11 +586,10 @@ export default function App() {
                               <p className="text-sm font-mono text-zinc-500">{ag.address}</p>
                             </div>
                           </div>
-                          <span className={`px-3 py-1 text-xs uppercase tracking-wider rounded-lg border font-bold ${
-                            ag.status === "active" ? "text-emerald-400 border-emerald-400/30 bg-emerald-400/10" : 
-                            ag.status === "safe_mode" ? "text-red-500 border-red-500/30 bg-red-500/10 animate-pulse" :
-                            "text-zinc-400 border-zinc-400/30 bg-zinc-400/10"
-                          }`}>{ag.status === "safe_mode" ? "LOCKED" : ag.status}</span>
+                          <span className={`px-3 py-1 text-xs uppercase tracking-wider rounded-lg border font-bold ${ag.status === "active" ? "text-emerald-400 border-emerald-400/30 bg-emerald-400/10" :
+                              ag.status === "safe_mode" ? "text-red-500 border-red-500/30 bg-red-500/10 animate-pulse" :
+                                "text-zinc-400 border-zinc-400/30 bg-zinc-400/10"
+                            }`}>{ag.status === "safe_mode" ? "LOCKED" : ag.status}</span>
                         </div>
                         <div className="grid grid-cols-3 gap-6 mb-4">
                           <div><p className="text-zinc-500 text-xs uppercase mb-1">Role</p><p className="font-medium text-white/90 capitalize">{ag.role}</p></div>
@@ -612,7 +610,7 @@ export default function App() {
 
             {activeTab === "Analytics" && (
               <motion.div key="analytics" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex-1 flex flex-col space-y-8">
-                 <div className="flex items-end justify-between">
+                <div className="flex items-end justify-between">
                   <div>
                     <h2 className="text-4xl font-semibold mb-2">Network Analytics</h2>
                     <p className="text-zinc-400">Dynamic system telemetry based on operating sub-delegations.</p>
@@ -655,14 +653,14 @@ export default function App() {
                   <h2 className="text-4xl font-semibold mb-4">Configuration</h2>
                   <p className="text-zinc-400 mb-8">Manage MetaMask framework node addresses.</p>
                   <div className="glass-panel rounded-2xl p-8 space-y-6">
-                    <CustomInput label="Delegation Manager RPC" value={settingsForm.rpc} onChange={(e: any) => setSettingsForm({...settingsForm, rpc: e.target.value})} />
-                    <CustomInput label="ERC-7715 Core Contract" value={settingsForm.core} onChange={(e: any) => setSettingsForm({...settingsForm, core: e.target.value})} />
+                    <CustomInput label="Delegation Manager RPC" value={settingsForm.rpc} onChange={(e: any) => setSettingsForm({ ...settingsForm, rpc: e.target.value })} />
+                    <CustomInput label="ERC-7715 Core Contract" value={settingsForm.core} onChange={(e: any) => setSettingsForm({ ...settingsForm, core: e.target.value })} />
                     <div className="flex gap-4">
-                      <div className="w-1/2"><CustomInput type="number" label="Default Max Depth" value={settingsForm.depth} onChange={(e: any) => setSettingsForm({...settingsForm, depth: e.target.value})} /></div>
-                      <div className="w-1/2"><CustomInput type="number" label="Alert Threshold (%)" value={settingsForm.alert} onChange={(e: any) => setSettingsForm({...settingsForm, alert: e.target.value})} /></div>
+                      <div className="w-1/2"><CustomInput type="number" label="Default Max Depth" value={settingsForm.depth} onChange={(e: any) => setSettingsForm({ ...settingsForm, depth: e.target.value })} /></div>
+                      <div className="w-1/2"><CustomInput type="number" label="Alert Threshold (%)" value={settingsForm.alert} onChange={(e: any) => setSettingsForm({ ...settingsForm, alert: e.target.value })} /></div>
                     </div>
                     <div className="pt-4 mt-6 border-t border-white/10 text-right">
-                       <button onClick={saveSettings} className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                      <button onClick={saveSettings} className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.3)]">
                         {isSavingSettings ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : "Save Settings"}
                       </button>
                     </div>
@@ -677,25 +675,25 @@ export default function App() {
             {showDelModal && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-xl px-4 p-4">
                 <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="w-full max-w-lg glass-panel border border-white/10 rounded-2xl p-8 relative">
-                  <button onClick={closeDelModal} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5"/></button>
+                  <button onClick={closeDelModal} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5" /></button>
                   <h3 className="text-2xl font-bold mb-6 text-white">{editDelId ? "Update Allocation" : "Deploy Validation Framework"}</h3>
-                  <CustomInput label="Delegation Name / Title" placeholder="e.g. Treasury Agent" value={delForm.title} onChange={(e: any) => setDelForm({...delForm, title: e.target.value})} />
-                  <CustomInput label="Target Address or Contract" placeholder="0x..." value={delForm.target} onChange={(e: any) => setDelForm({...delForm, target: e.target.value})} />
-                  {!editDelId && <CustomInput label="Budget Constraint (Max Amount)" type="number" value={delForm.amount} onChange={(e: any) => setDelForm({...delForm, amount: e.target.value})} />}
+                  <CustomInput label="Delegation Name / Title" placeholder="e.g. Treasury Agent" value={delForm.title} onChange={(e: any) => setDelForm({ ...delForm, title: e.target.value })} />
+                  <CustomInput label="Target Address or Contract" placeholder="0x..." value={delForm.target} onChange={(e: any) => setDelForm({ ...delForm, target: e.target.value })} />
+                  {!editDelId && <CustomInput label="Budget Constraint (Max Amount)" type="number" value={delForm.amount} onChange={(e: any) => setDelForm({ ...delForm, amount: e.target.value })} />}
                   <button onClick={submitDelegation} className="w-full mt-4 py-3.5 bg-blue-500 rounded-xl font-bold text-white shadow-[0_0_20px_rgba(59,130,246,0.5)]">Authorize Protocol</button>
                 </motion.div>
               </motion.div>
             )}
-            
+
             {showIntentModal && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-xl px-4 p-4">
                 <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="w-full max-w-lg glass-panel border border-white/10 rounded-2xl p-8 relative">
-                  <button onClick={() => setShowIntentModal(false)} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5"/></button>
+                  <button onClick={() => setShowIntentModal(false)} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5" /></button>
                   <h3 className="text-2xl font-bold mb-6 text-white">Create Protocol Intent</h3>
-                  <CustomSelect label="Action Type" options={[{label: 'ERC20 Transfer', value: 'transfer'}, {label: 'Contract Access', value: 'access'}, {label: 'Execute Arbitrary Code', value: 'execute'}]} value={intentForm.action} onChange={(e: any) => setIntentForm({...intentForm, action: e.target.value})} />
-                  <CustomInput label="Target Receiver" placeholder="e.g. 0xReceiver..." value={intentForm.target} onChange={(e: any) => setIntentForm({...intentForm, target: e.target.value})} />
-                  {intentForm.action === 'transfer' && <CustomInput label="Amount" placeholder="e.g. 200 USDC" value={intentForm.amount} onChange={(e: any) => setIntentForm({...intentForm, amount: e.target.value})} />}
-                  <CustomInput label="Reasoning / Justification" placeholder="Required for on-chain audit" value={intentForm.reasoning} onChange={(e: any) => setIntentForm({...intentForm, reasoning: e.target.value})} />
+                  <CustomSelect label="Action Type" options={[{ label: 'ERC20 Transfer', value: 'transfer' }, { label: 'Contract Access', value: 'access' }, { label: 'Execute Arbitrary Code', value: 'execute' }]} value={intentForm.action} onChange={(e: any) => setIntentForm({ ...intentForm, action: e.target.value })} />
+                  <CustomInput label="Target Receiver" placeholder="e.g. 0xReceiver..." value={intentForm.target} onChange={(e: any) => setIntentForm({ ...intentForm, target: e.target.value })} />
+                  {intentForm.action === 'transfer' && <CustomInput label="Amount" placeholder="e.g. 200 USDC" value={intentForm.amount} onChange={(e: any) => setIntentForm({ ...intentForm, amount: e.target.value })} />}
+                  <CustomInput label="Reasoning / Justification" placeholder="Required for on-chain audit" value={intentForm.reasoning} onChange={(e: any) => setIntentForm({ ...intentForm, reasoning: e.target.value })} />
                   <button onClick={submitIntent} className="w-full mt-4 py-3.5 bg-emerald-500 hover:bg-emerald-600 rounded-xl font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]">Queue Intent</button>
                 </motion.div>
               </motion.div>
@@ -704,14 +702,14 @@ export default function App() {
             {showAgentModal && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-xl px-4 p-4">
                 <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="w-full max-w-lg glass-panel border border-white/10 rounded-2xl p-8 relative">
-                  <button onClick={() => setShowAgentModal(false)} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5"/></button>
+                  <button onClick={() => setShowAgentModal(false)} className="absolute top-6 right-6 text-zinc-400 hover:text-white"><X className="w-5 h-5" /></button>
                   <h3 className="text-2xl font-bold mb-6 text-white">Deploy AI Node</h3>
-                  <CustomInput label="Agent Identifier" placeholder="e.g. Trading Bot Alpha" value={agentForm.name} onChange={(e: any) => setAgentForm({...agentForm, name: e.target.value})} />
+                  <CustomInput label="Agent Identifier" placeholder="e.g. Trading Bot Alpha" value={agentForm.name} onChange={(e: any) => setAgentForm({ ...agentForm, name: e.target.value })} />
                   <div className="flex gap-4">
-                    <div className="w-1/2"><CustomSelect label="AI Core Model" options={[{label: 'Ollama (Local)', value: 'ollama'}, {label: 'OpenClaw', value: 'openclaw'}, {label: 'GLM', value: 'glm'}, {label: 'Claude', value: 'claude'}]} value={agentForm.model} onChange={(e: any) => setAgentForm({...agentForm, model: e.target.value})} /></div>
-                    <div className="w-1/2"><CustomSelect label="Agent Role" options={[{label: 'Executor', value: 'executor'}, {label: 'Coordinator', value: 'coordinator'}, {label: 'Verifier', value: 'verifier'}]} value={agentForm.role} onChange={(e: any) => setAgentForm({...agentForm, role: e.target.value})} /></div>
+                    <div className="w-1/2"><CustomSelect label="AI Core Model" options={[{ label: 'Ollama (Local)', value: 'ollama' }, { label: 'OpenClaw', value: 'openclaw' }, { label: 'GLM', value: 'glm' }, { label: 'Claude', value: 'claude' }]} value={agentForm.model} onChange={(e: any) => setAgentForm({ ...agentForm, model: e.target.value })} /></div>
+                    <div className="w-1/2"><CustomSelect label="Agent Role" options={[{ label: 'Executor', value: 'executor' }, { label: 'Coordinator', value: 'coordinator' }, { label: 'Verifier', value: 'verifier' }]} value={agentForm.role} onChange={(e: any) => setAgentForm({ ...agentForm, role: e.target.value })} /></div>
                   </div>
-                  <CustomInput label="Model Endpoint RPC" placeholder="http://localhost:11434" value={agentForm.endpoint} onChange={(e: any) => setAgentForm({...agentForm, endpoint: e.target.value})} />
+                  <CustomInput label="Model Endpoint RPC" placeholder="http://localhost:11434" value={agentForm.endpoint} onChange={(e: any) => setAgentForm({ ...agentForm, endpoint: e.target.value })} />
                   <button onClick={submitAgent} className="w-full mt-4 py-3.5 bg-blue-500 hover:bg-blue-600 rounded-xl font-bold text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]">Initialize Node</button>
                 </motion.div>
               </motion.div>

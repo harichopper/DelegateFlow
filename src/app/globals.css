@@ -1,13 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  --bg-primary: #030305;
+  --bg-secondary: #0a0b10;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent-blue: #3b82f6;
+  --accent-purple: #a855f7;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
 }
 
 :root {
-  --background: #030305;
-  --foreground: #ffffff;
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
 body {
@@ -16,61 +31,88 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-::selection {
-  background-color: rgba(59, 130, 246, 0.3);
+/* Base Glassmorphism */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.5);
 }
 
-/* Custom Utilities for Modern UI */
-.glass-panel {
-  background-color: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
 }
 
-.text-glow {
-  text-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+.highlight-ring {
+  box-shadow: 0 0 0 1px var(--border), 0 0 20px -5px rgba(59, 130, 246, 0.15);
 }
 
-/* Animated Background Mesh */
+.btn-primary {
+  @apply px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-2;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 15px 25px -5px rgba(59, 130, 246, 0.5);
+}
+
+.btn-ghost {
+  @apply px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-2;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-secondary);
+}
+
+.status-dot {
+  @apply w-2 h-2 rounded-full inline-block;
+}
+
+.status-active { background-color: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+.status-pending { background-color: var(--warning); }
+.status-error { background-color: var(--error); }
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 .mesh-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: -1;
-  background-color: #030305;
-  background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,30%,0.15) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, hsla(339,49%,30%,0.1) 0, transparent 50%);
+  background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #030305 60%);
 }
 
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.03;
+  opacity: 0.015;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #030305;
-}
-::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #374151;
-}
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #1a1b23; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #252833; }

@@ -19,7 +19,9 @@ interface IZKVerifier {
         bytes32 commitment,
         bytes calldata proof,
         bytes32 nullifier
-    ) external view returns (bool);
+    ) external returns (bool);
+
+    function isCommitmentValid(bytes32 commitment) external view returns (bool);
 
     /**
      * @dev Check if a nullifier has been used

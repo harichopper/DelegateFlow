@@ -1,0 +1,121 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Hariharan\\OneDrive\\Desktop\\hackt\\pr\\contracts\\CaveatEnforcers.sol": {
+      "lastModificationDate": 1773904799047,
+      "contentHash": "553352753822330149ecf001a516f63d",
+      "sourceName": "contracts/CaveatEnforcers.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "AllowedMethodsEnforcer",
+        "AllowedTargetsEnforcer",
+        "NativeTokenTransferAmountEnforcer",
+        "RateLimitEnforcer",
+        "TimeBoundEnforcer"
+      ]
+    },
+    "C:\\Users\\Hariharan\\OneDrive\\Desktop\\hackt\\pr\\contracts\\DelegationManager.sol": {
+      "lastModificationDate": 1774159494571,
+      "contentHash": "a4003e3397d9cd11f3f095f7cb69584e",
+      "sourceName": "contracts/DelegationManager.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "DelegationManager",
+        "IDelegationManager"
+      ]
+    },
+    "C:\\Users\\Hariharan\\OneDrive\\Desktop\\hackt\\pr\\contracts\\ZKVerifier.sol": {
+      "lastModificationDate": 1774159912852,
+      "contentHash": "6417c7e06afde08a6690cfd4f574c8da",
+      "sourceName": "contracts/ZKVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "AgentBudgetEnforcer",
+        "IZKVerifier",
+        "ZKGatedDelegationEnforcer",
+        "ZKMembershipVerifier"
+      ]
+    }
+  }
+}
